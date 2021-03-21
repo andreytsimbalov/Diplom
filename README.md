@@ -4,33 +4,33 @@
 
 ***Содержание:***
 - [Сбор данных](#Data-collection)
-- [Подготовка репозитория](#Preparing-repo)
-     - [Подготовка документации](#Preparing-doc)
-     - [Оценка качества кода](#Codacy)
-- [Подготовка автоматической сборки в Travis CI](#Travis-CI)
-     - [Разработка сборочного скрипта setup.py](#Setup)
-     - [Настройка конфигурации в .travis.yml](#Configuration)
-     - [Подготовка и настройка репозитория в PyPI](#PyPI)
-- [Публикация новости о релизе в Telegram-канале DevOpsHQ](#News)
-- [Проверка тестового проекта](#Testing)
+- [Предобработка данных](#Data-preprocessing)
+- [Векторизация](#Vectorization)
+- [Классификация](#Classification)
+- [Тематический анализ](#Еhematic-analysis)
 
 
-# Введение <a name="Introduction"></a>
 
-## Сбор данных <a name="Data-collection"></a> Data collection
+## Сбор данных <a name="Data-collection"></a>
 
-**Parser_news_LENTA** создаёт 12 датасетов(по одному на каждый месяц 2020 года) в формате **data/data_on_months/news_lenta_XX_2020**
+[Parser_news_LENTA](https://github.com/andreytsimbalov/Diplom/blob/main/Parser_news_LENTA.ipynb) 
+создаёт 12 датасетов(по одному на каждый месяц 2020 года) в формате **data/data_on_months/news_lenta_XX_2020**
 
-Аналогично: **RIA, RBC**
+Аналогично: 
+[RIA](https://github.com/andreytsimbalov/Diplom/blob/main/Parser_news_RIA.ipynb),
+[RBC](https://github.com/andreytsimbalov/Diplom/blob/main/Parser_news_RBC.ipynb)
 
-
-**data_news_corrector_2020** объединяет все собранные данные и нормализует их форму. 
+[data_news_corrector_2020](https://github.com/andreytsimbalov/Diplom/blob/main/data_news_corrector_2020.ipynb)
+объединяет все собранные данные и нормализует их форму. 
 Остаются только *tags	- dt - main_text - website* столбцы.
 Итоговый датасет **data/news_main_2020**
 
-## Data preprocessing
 
-**data_preprocessing** проводит предобработку данных.
+
+## Предобработка данных <a name="Data-preprocessing"></a>
+
+[data_preprocessing](https://github.com/andreytsimbalov/Diplom/blob/main/data_preprocessing.ipynb)
+проводит предобработку данных.
 Происводится стемминг/лемматизация, удаление стоп-слов, замена чисел на унифицированные аналоги.
 
 Также создаются метки на основе тегов с вебсайтов для дальнейшей классификации:
@@ -44,9 +44,13 @@
 
 Итоговый датасет **data/news_main_prepr_2020**, а также **data/data_stem & data/data_lemm**
 
-# Vectorization
 
-Данные векторизуются:
+
+
+# Векторизация <a name="Vectorization"></a>
+
+[vector_model_creator](https://github.com/andreytsimbalov/Diplom/blob/main/vector_model_creator.ipynb)
+производит векторизацию:
  - **tfidf_lemm_up** - tfidf с балансировкой классов вверд
  - **tfidf_lemm_down** - tfidf с балансировкой классов вниз
  - **d2v** - Doc2Vec
@@ -54,4 +58,11 @@
  - **ft_lemm_300** - FastText
 
 все модели хранятся в папке **models/**
+
+
+
+# Классификация <a name="Classification"></a>
+
+
+# Тематический анализ <a name="Еhematic-analysis"></a>
 
