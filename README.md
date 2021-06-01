@@ -1,13 +1,12 @@
-# Diplom
+# News_Classification_and_Vectorization
 
-Данный проект реализует: сборку новостей -> предобработку -> классификацию -> *разбиение на тематики*
+Данный проект реализует: сборку новостей -> предобработку -> векторизацию -> классификацию
 
 ***Содержание:***
 - [Сбор данных](#Data-collection)
 - [Предобработка данных](#Data-preprocessing)
 - [Векторизация](#Vectorization)
 - [Классификация](#Classification)
-- [Тематический анализ](#Еhematic-analysis)
 
 
 
@@ -36,7 +35,7 @@
 Также создаются метки на основе тегов с вебсайтов для дальнейшей классификации:
  - economy
  - entertainment
- - other
+ - traditions
  - science
  - society
  - sports
@@ -51,18 +50,26 @@
 
 [vector_model_creator](https://github.com/andreytsimbalov/Diplom/blob/main/vector_model_creator.ipynb)
 производит векторизацию:
- - **tfidf_lemm_up** - tfidf с балансировкой классов вверд
- - **tfidf_lemm_down** - tfidf с балансировкой классов вниз
- - **d2v** - Doc2Vec
- - **w2v_lemm_300** - Word2Vec
+ - **tfidf_lemm_500k** - tfidf
+ - **d2v_300** - Doc2Vec
  - **ft_lemm_300** - FastText
+ - **w2v_tfidf_vector_data** - Word2Vec
+ - **glove_tfidf_vector_data** - GloVe
+ - **use_vector_data** - Universal-sentence-encoder
+ - **bert_vector_data** - Bert
 
 все модели хранятся в папке **models/**
 
 
 
 # Классификация <a name="Classification"></a>
+[Classifier_news](https://github.com/andreytsimbalov/Diplom/blob/main/Classifier_news.ipynb)
+производит классификацию:
+ - LogisticRegression
+ - SVM
+ - Single-layer perceptron
+ - Bert
+ - Gpt-2
 
-
-# Тематический анализ <a name="Еhematic-analysis"></a>
+для моделей *LogisticRegression, SVM, Single-layer perceptron* производится предварительная векторизация одним из ранее описанных методов.
 
